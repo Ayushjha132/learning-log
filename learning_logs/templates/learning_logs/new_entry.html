@@ -1,0 +1,15 @@
+{% extends 'learning_logs/base.html' %}
+{% block content%}
+
+    <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+    <p>Add a new Entry:</p>
+    <form action="{% url 'learning_logs:new_entry' topic.id %}" method="post">
+        <!-- django template tag to prevent the attacks through form -->
+        {% csrf_token %}
+        <!-- django template tag create all the form fields  -->
+        {{ form.as_div }}
+        <button name="submit">Add entry</button>
+    </form>
+
+{% endblock content %}
